@@ -1,0 +1,103 @@
+
+.wrapper {
+    background-color: #8d8cff47;
+    min-height: 100vh;
+}
+
+.steps{
+    position: absolute;
+    left: 1rem;
+}
+
+.timer_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.timer_value{
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Exo', sans-serif;
+    width: 14rem;
+}
+
+.tile{
+    width: 10rem;
+    height: auto;
+    box-shadow: 0px 0px 35px 4px rgba(255,255,255,1);
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    margin: .2rem;
+}
+
+.flag{
+    width: 1.5rem;
+}
+
+.frontImg,
+.backImg{
+    position: relative;
+    width: 100%;
+    height: auto;
+    backface-visibility: hidden;
+    transition: transform .3s;
+}
+
+.frontImg{
+    transition-delay: .25s;
+}
+
+.backImg{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.tile.matched{
+    pointer-events: none;
+}
+
+.backImg{
+    transform: rotateY(0deg);
+    opacity: 1;
+}
+
+.frontImg{
+    transform: rotateY(270deg);
+}
+
+.tile.matched .backImg{
+    transform: rotateY(90deg);
+}
+
+.tile.matched .frontImg{
+    transform: rotateY(0deg);
+}
+
+.gameAreaCont{
+    margin-block-start: 1.5rem;
+}
+
+
+.modalFooter{
+    justify-content: space-around;
+}
+
+.results_tbody{
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.curtainWrapper{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #c5deea 0%,#8abbd7 31%,#066dab 100%);
+}
+
+
