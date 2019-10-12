@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown} from 'react-bootstrap';
 
 const DropDown = props => {
@@ -25,4 +26,9 @@ const DropDown = props => {
     </Dropdown>
     )
 }
+
+DropDown.propTypes = {
+    selectLevel: PropTypes.func.isRequired
+}
+
 export default DropDown;

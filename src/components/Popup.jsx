@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal,Button} from 'react-bootstrap';
 import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx';
 import DropDown from './FormRegistration/DropDown.jsx';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
 const Popup = props => {
@@ -43,6 +44,15 @@ const Popup = props => {
             </Modal.Footer>
         </Modal>
     )
+}
+
+Popup.propTypes = {
+    setGame: PropTypes.func.isRequired,
+    show: PropTypes.bool.isRequired
+}
+
+Popup.defaultProps = {
+    show: true
 }
 
 export default Popup;

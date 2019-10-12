@@ -1,4 +1,5 @@
 import React,{useRef} from 'react';
+import PropTypes from 'prop-types';
 import {Form} from 'react-bootstrap';
 
 const RegistrationLogin = props => {
@@ -17,6 +18,10 @@ const RegistrationLogin = props => {
         </Form.Group>
       </Form>
     )
+}
+
+RegistrationLogin.propTypes = {
+  saveNameCB: PropTypes.func.isRequired
 }
 
 export default RegistrationLogin;

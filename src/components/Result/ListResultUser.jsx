@@ -1,5 +1,6 @@
 import React from 'react';
 import ResultUser from './ResultUser.jsx';
+import PropTypes from 'prop-types';
 import styles from '../../styles/styles.scss';
 
 const ListResultUser = ({user}) => {
@@ -24,6 +25,10 @@ const ListResultUser = ({user}) => {
             </tbody>
         </table>
     )
+}
+
+ListResultUser.propTypes={
+    user: PropTypes.array.isRequired
 }
 
 export default ListResultUser;

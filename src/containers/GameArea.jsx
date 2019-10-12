@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import GameTile from '../components/GameTile.jsx';
 import {Container ,Row} from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
 
@@ -22,7 +23,6 @@ let initialTiles = [{'tile_num':1, 'selected':false},
                     {'tile_num':14, 'selected':false},
                     {'tile_num':15, 'selected':false}];
 const GameArea = (props) => {
-
     let tiles_img = [...initialTiles];
     let firstStepArray = [];
     let secondStepArray = [];
@@ -157,6 +157,16 @@ const GameArea = (props) => {
            
         </Container>
     )
+}
+
+GameArea.propTypes = {
+    endingGame: PropTypes.func.isRequired,
+    getSettings: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        level: PropTypes.object.isRequired,
+        time: PropTypes.number.isRequired,
+        userName: PropTypes.string.isRequired
+    })
 }
 
 export default GameArea;

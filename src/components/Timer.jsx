@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
 const Timer = props => {
@@ -40,6 +41,17 @@ const Timer = props => {
             <span className={styles.timer_value}>{clock}</span>
         </header>
     )
+}
+
+
+Timer.propTypes = {
+    getTime: PropTypes.func.isRequired,
+    runTimer: PropTypes.bool.isRequired,
+    startGame: PropTypes.bool
+}
+
+Timer.defaultProps = {
+    startGame: null
 }
 
 export default Timer;
