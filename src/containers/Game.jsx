@@ -3,7 +3,7 @@ import Timer from '../components/Timer.jsx';
 import {Container ,Row, Col} from 'react-bootstrap';
 import ListResultUser from '../components/Result/ListResultUser.jsx';
 const GameArea = React.lazy(() => import('./GameArea.jsx'));
-import Popup from '../components/Popup.jsx';
+import Popup from '../components/PopupLogin.jsx';
 import Curtain from '../components/Curtain.jsx';
 
 const Game = () => {
