@@ -1,58 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Modal,Button} from 'react-bootstrap';
 import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx';
 import DropDown from './FormRegistration/DropDown.jsx';
-import PropTypes from 'prop-types';
-import styles from '../styles/styles.scss';
 
 const PopupLogin = props => {
     const handleClose = () => false;
-    let curr_name = null;
-    let curr_level = null;
+    const [name, setName] = useState('');
+    const [level, setLevel] = useState(0);
 
-    const selectLevel =(level)=>{
-        curr_level = level;
+    const selectGameLevel =(level)=> {
+        setLevel(level);
     }
 
-    const getName =(name)=>{
-        curr_name = name;
+    const setPlayerName =(name)=> {
+        setName(name);
     }
 
-    const checkInputData =()=>{
-        if(!curr_name){
+    const handleInputs =()=> {
+        if(!name){
             alert('missing name!!!');
-        }else if(!curr_level){
+        }else if(!level){
             alert('missing difficult');
-        }else{
-            props.setGame({'userName':curr_name, 'level':curr_level});
         }
+        
+        //1) login
+        //2) redirect to game 
+
     }
 
 
     
     return(
-        <Modal show={props.show} size="sm" onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered >
+        <Modal show={true} size="sm" onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered >
         <Modal.Header>
             <Modal.Title>NEW PLAYER</Modal.Title>
         </Modal.Header>
             <Modal.Body>
-                <RegistrationLogin saveNameCB={getName} />
-                <DropDown selectLevel={selectLevel} />
+                <RegistrationLogin saveNameCB={setPlayerName} />
+                <DropDown selectLevel={selectGameLevel} />
             </Modal.Body>
             <Modal.Footer className={styles.modalFooter}>
-                <Button variant="primary" onClick={checkInputData} >Start Game</Button>
+                <Button variant="primary" onClick={handleInputs} >Start Game</Button>
             </Modal.Footer>
         </Modal>
     )
 }
 
-PopupLogin.propTypes = {
-    setGame: PropTypes.func.isRequired,
-    show: PropTypes.bool.isRequired
-}
 
-PopupLogin.defaultProps = {
-    show: true
-}
+// props.setGame({'userName':curr_name, 'level':curr_level});
+
 
 export default PopupLogin;

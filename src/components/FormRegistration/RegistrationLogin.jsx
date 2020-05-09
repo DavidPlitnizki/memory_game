@@ -12,7 +12,7 @@ const RegistrationLogin = props => {
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Enter Name:</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" onChange={setChar} />
+          <Form.Control type="text" onChange={setChar} />
         </Form.Group>
       </Form>
     )
