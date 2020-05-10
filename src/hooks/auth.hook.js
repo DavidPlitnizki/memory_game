@@ -5,20 +5,26 @@ const storageUser = 'userData';
 
 export const useAuth = () => {
 
-    const [isAuth, setIsAuth] = useState();
+    const [isAuth, setIsAuth] = useState(null);
+    const [playerName, setPlayerName] = useState('');
+    const [playerLevel, setPlayerLevel] = useState(null);
 
-    const login = useCallback((name)=> {
-
+    const login = useCallback(({userName, level})=> {
+        sessionStorage.clear();
         setIsAuth(true);
+        setPlayerLevel(level);
+        setPlayerName(userName);
         sessionStorage.setItem(storageUser, JSON.stringify({
-            user: name
+            userName,
+            level
         }))
+        
     },[])
 
     useEffect(() => {
         const user = JSON.parse(sessionStorage.getItem(storageUser));
-            setIsAuth(!!user);
-    },[])
+        if(!!user) login(user);
+    },[login])
 
-    return {login, isAuth};
+    return {login, isAuth, playerName, playerLevel};
 }

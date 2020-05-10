@@ -1,12 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Modal,Button} from 'react-bootstrap';
 import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx';
 import DropDown from './FormRegistration/DropDown.jsx';
+import {useAuth} from '../hooks/auth.hook';
+import styles from '../styles/styles.scss';
+import {AuthContext} from '../context/AuthContext';
+import {useHistory} from 'react-router-dom';
 
 const PopupLogin = props => {
+    const {login,isAuthenticated} = useContext(AuthContext);
     const handleClose = () => false;
     const [name, setName] = useState('');
     const [level, setLevel] = useState(0);
+    const history = useHistory();
 
     const selectGameLevel =(level)=> {
         setLevel(level);
@@ -23,8 +29,9 @@ const PopupLogin = props => {
             alert('missing difficult');
         }
         
-        //1) login
-        //2) redirect to game 
+        history.push('/main');
+        const userData = {userName: name, level};
+        login(userData);
 
     }
 
