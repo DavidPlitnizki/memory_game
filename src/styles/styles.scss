@@ -110,4 +110,31 @@
     padding: 0 .5rem 0 .5rem;
 }
 
+/*Login*/
+.login_wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    border: double 5px #2378dc7d;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 10rem;
+    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
+}
+
+.login_title {
+    align-self: center;
+}
+
+.login_wrapper .login_btn {
+    margin-top: 2rem;
+    align-self: flex-end;
+}
+
+.login_wrapper .login_error {
+    color: red;
+    margin-top: 1rem;
+}
+
 

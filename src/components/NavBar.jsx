@@ -9,7 +9,7 @@ const NavBar = () => {
                 <Col>
                 <Navbar bg="dark" className="justify-content-end">
                     <ul className={styles.nav_item}>
-                        <li><NavLink to="login">Login</NavLink></li>
+                        <li><NavLink to="login">New User</NavLink></li>
                         <li><NavLink to="main">Main</NavLink></li>
                         <li><NavLink to="result">Result</NavLink></li>
                     </ul>
