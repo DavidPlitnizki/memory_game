@@ -4,25 +4,25 @@ import styles from '../styles/styles.scss';
 
 
 
-const GameTile = props => {
+const GameTile = ({id, num, select, open}) => {
     function selectCard() {
-        props.select({'id':props.id,'value':props.num});
+        select({id,'value':num});
     } 
 
-    const matchedClass = (props.open) ? styles.matched : '';
+    const matchedClass = (open) ? styles.matched : '';
     return (
         <div className={styles.tile + ' ' + `${matchedClass}`} onClick={selectCard}>
-            <img className={styles.frontImg} src={`../assets/${props.num}.png`} />
+            <img className={styles.frontImg} src={`../assets/${num}.png`} />
             <img className={styles.backImg} src={`../assets/0.png`} />
         </div>
     )
 }
 
 GameTile.propTypes = {
-    id: PropTypes.number.isRequired,
-    num: PropTypes.number.isRequired,
-    open: PropTypes.bool.isRequired,
-    select: PropTypes.func.isRequired
+    // id: PropTypes.number.isRequired,
+    // num: PropTypes.number.isRequired,
+    // open: PropTypes.bool.isRequired,
+    // select: PropTypes.func.isRequired
 }
 
 export default GameTile;

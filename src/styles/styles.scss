@@ -43,11 +43,11 @@
     width: 100%;
     height: auto;
     backface-visibility: hidden;
-    transition: transform .3s;
+    transition: transform .15s;
 }
 
 .frontImg{
-    transition-delay: .25s;
+    transition-delay: .1s;
 }
 
 .backImg{

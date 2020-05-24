@@ -1,147 +1,66 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, useCall} from 'react';
 import GameTile from '../components/GameTile.jsx';
 import {Container ,Row} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
+const GameArea = ({getSettings}) => {
+    const [gameFields, setGameFilds] = useState(getSettings);
+    const [superiorTiles, setSuperiorTiles] = useState([]);
+    const [canClick, setCanClick] = useState(false);
 
-let firstSelectedTile = 0;
-let secondSelectedTile = 0;
-let initialTiles = [{'tile_num':1, 'selected':false},
-                    {'tile_num':2, 'selected':false},
-                    {'tile_num':3, 'selected':false},
-                    {'tile_num':4, 'selected':false},
-                    {'tile_num':5, 'selected':false},
-                    {'tile_num':6, 'selected':false},
-                    {'tile_num':7, 'selected':false},
-                    {'tile_num':8, 'selected':false},
-                    {'tile_num':9, 'selected':false},
-                    {'tile_num':10, 'selected':false},
-                    {'tile_num':11, 'selected':false},
-                    {'tile_num':12, 'selected':false},
-                    {'tile_num':13, 'selected':false},
-                    {'tile_num':14, 'selected':false},
-                    {'tile_num':15, 'selected':false}];
-const GameArea = (props) => {
-    let tiles_img = [...initialTiles];
-    let firstStepArray = [];
-    let secondStepArray = [];
-    let finishArray = [];
-     let _moves = 0;
-     let _maxiles = 0;
-    
-     const [tiles, setTiles] = useState([]);
-     useEffect(()=>{
-        prepaireArray();
+
+    useEffect(()=> {
+        setCanClick(true);
     },[]);
-    const [moves, setMoves] = useState(0);
-    const [maxiles, setMaxiles] = useState(0);
-    
-    const setDifficult =(id)=>{
-        switch (id){
-            case 1:
-                return 5;
-            case 2:
-                return 10;
-            case 3:
-                return 15;
-            default:
-                return 5;
-        }
-    }
-    
-    const prepaireArray =()=>{
-        _moves = setDifficult(props.getSettings.level.id);
-        _maxiles = setDifficult(props.getSettings.level.id);
-        
-        firstStepArray = fillRandomalyData(tiles_img, firstStepArray);
-        let tmpArray = firstStepArray.map(el => el);
-        secondStepArray = fillRandomalyData(tmpArray, secondStepArray);
-        finishArray = firstStepArray.concat(secondStepArray);
-        setTiles(finishArray);
-        setMoves(_moves);
-        setMaxiles(_maxiles);
-    }
 
-    const fillRandomalyData =(arrayData, filledArray)=>{
-        let i = 0;
-        for(i; i<_maxiles; i++){
-            let selectedEl = Math.floor(Math.random() * arrayData.length);
-            let newObj = {
-                'tile_num' : arrayData[selectedEl].tile_num,
-                'selected' : arrayData[selectedEl].selected
+    useEffect(()=> {
+       setTimeout(()=> {
+        compareTiles();
+       },300);
+    },[gameFields]);
+
+    const onSelectTile =({id, value})=> {
+        let modTile;
+        if(!canClick) return;
+        const modifiledTiles = gameFields.map((tile, i)=> {
+            if(i === id) {
+                tile.selected = !tile.selected;
+                modTile = tile;
             }
-            filledArray.push(newObj);
-            arrayData.splice(selectedEl,1);
-        }
-        return filledArray;
+            return tile;
+        })
+        setCanClick(false);
+        setSuperiorTiles([...superiorTiles, modTile]);
+        setGameFilds(modifiledTiles);
     }
 
-    const selectTile =({id,value})=>{
-        let tmp_arr = tiles.filter((el,i)=>{
-            if(i === id && !el.select){
-              el.selected = true;
+    const compareTiles=()=> {
+        if(superiorTiles.length > 1) {
+            if(superiorTiles[0].tile_num === superiorTiles[1].tile_num) {
+                setSuperiorTiles([]);
+            } else {
+                const modifiledTiles = gameFields.map((tile, i)=> {
+                    if(superiorTiles[0].tile_num === tile.tile_num || superiorTiles[1].tile_num === tile.tile_num) {
+                        if(tile.selected) {
+                            tile.selected = !tile.selected;
+                        }
+                    }
+                    return tile;
+                })
+
+                setGameFilds(modifiledTiles);
+                setSuperiorTiles([]);
             }
-            return el;
-        });
-        setTiles(tmp_arr);
-        setSelectedTiles(value);        
-    }
-
-    const setSelectedTiles =(val)=>{
-        if(!firstSelectedTile){
-          firstSelectedTile = val;
-        }else if(!secondSelectedTile){
-          secondSelectedTile = val;
-            setTimeout(()=>{
-                checkMatchingTiles();
-            },500)
-            
         }
+        setCanClick(true);
     }
-
-    const checkMatchingTiles =()=>{
-        if(firstSelectedTile === secondSelectedTile){
-            resetCurrentSelected();
-            leaveMove();
-        }else if(firstSelectedTile !== secondSelectedTile && firstSelectedTile && secondSelectedTile){
-            restoreSelectedTiles();
-            resetCurrentSelected();
-        }
-    }
-
-    const resetCurrentSelected=()=>{
-        firstSelectedTile = 0;
-        secondSelectedTile = 0;
-    }
-
-    const leaveMove =()=>{
-        let tmp_moves = moves -1;
-        setMoves(tmp_moves);
-        checkGameState(tmp_moves);
-    }
-    const checkGameState =(val)=>{        
-        if(val === 0){
-            props.endingGame();
-        }
-    }
-
-    const restoreSelectedTiles =()=>{
-        let tmp_arr = tiles.filter((el,i)=>{
-            if(el.tile_num == firstSelectedTile || el.tile_num == secondSelectedTile){
-              el.selected = false;
-            }
-            return el;
-        });
-        setTiles(tmp_arr);
-    }
-
 
     const renderGameTile=()=>{
         let arr = [];
-        if(tiles.length > 0){
-            return arr = tiles.map((el,i)=>{
-                return <GameTile num={el.tile_num} id={i} key={'id_'+i} select={selectTile} open={el.selected} />
+        if(gameFields.length > 0){
+            return arr = gameFields.map((tile,i)=>{
+                return <GameTile num={tile.tile_num} id={i} key={'id_'+i} select={onSelectTile} open={tile.selected} />
             })
         }
         return arr;
@@ -160,13 +79,13 @@ const GameArea = (props) => {
 }
 
 GameArea.propTypes = {
-    endingGame: PropTypes.func.isRequired,
-    getSettings: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        level: PropTypes.object.isRequired,
-        time: PropTypes.number.isRequired,
-        userName: PropTypes.string.isRequired
-    })
+    // endingGame: PropTypes.func.isRequired,
+    // getSettings: PropTypes.shape({
+    //     id: PropTypes.number.isRequired,
+    //     level: PropTypes.object.isRequired,
+    //     time: PropTypes.number.isRequired,
+    //     userName: PropTypes.string.isRequired
+    // })
 }
 
 export default GameArea;

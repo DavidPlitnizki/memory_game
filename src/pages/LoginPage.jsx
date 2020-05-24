@@ -20,15 +20,15 @@ const LoginPage = props => {
     }
 
     const setPlayerName =(name)=> {
-        setName(name);
+        setName(name.trim());
     }
 
     const handleInputs =()=> {
         if(!name){
-            setError('missing name!!!');
+            setError('Enter Name!!!');
             return;
         }else if(!level){
-            setError('missing difficult');
+            setError('Select Level');
             return;
         }
 
