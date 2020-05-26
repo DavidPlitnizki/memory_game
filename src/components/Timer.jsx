@@ -2,18 +2,21 @@ import React,{useState,useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
-const Timer = props => {
+const Timer = ({startGame, getTime}) => {
     const [time, setTime] = useState(0);
 
     useEffect(()=>{
         let timer = null;
-        if(props.startGame){
+        if(startGame){
           timer = debounce(tick,1);
         }
-        else if(!props.startGame){
-            props.getTime(convertTime());
+        else if(!startGame){
+            getTime(convertTime());
         }
-        return (()=> {clearTimeout(timer)})
+        return (()=> {
+            getTime(convertTime());
+            clearTimeout(timer)
+        })
     },[time]);
 
     const debounce = useCallback((fn, delay)=> {
@@ -46,8 +49,8 @@ const Timer = props => {
 
 
 Timer.propTypes = {
-    getTime: PropTypes.func.isRequired,
-    startGame: PropTypes.bool.isRequired
+    // getTime: PropTypes.func.isRequired,
+    // startGame: PropTypes.bool.isRequired
 }
 
 Timer.defaultProps = {

@@ -1,6 +1,8 @@
 import React,{useState,useContext, useEffect, useCallback} from 'react';
+import { useHistory } from 'react-router-dom';
 import {useAuth} from '../hooks/auth.hook';
 import Game from '../containers/Game';
+import {useStore} from '../hooks/store.hook';
 import GameArea from '../containers/GameArea';
 import Timer from '../components/Timer.jsx';
 import {AuthContext} from '../context/AuthContext';
@@ -22,6 +24,8 @@ const initialTiles = [{'tile_num':1, 'selected':false},
                     {'tile_num':14, 'selected':false},
                     {'tile_num':15, 'selected':false}];
 
+let playTime = "00:00";
+
 const MainPage = () => {
     const {userName, userLevel} = useContext(AuthContext);
     // const {playerName, playerLevel} = useAuth();
@@ -29,27 +33,13 @@ const MainPage = () => {
     /* Will be 3 states init play finish */
     const [gameStart, SetGameStart] = useState(false);
     const [gameTiles, setGameTiles] = useState([]);
+    const {setResult} = useStore();
+    let history = useHistory();
     
-
-    // const configGame =()=> {
-    //     let tmp_user = {
-    //         userName,
-    //         level,
-    //         id: Date.now(),
-    //         time: 0
-    //     }
-        // setGameSettings(tmp_user);
-        // setGameStart(true);
-        // setStopTimer(true);
-    // }
     /* testing */
     useEffect(()=> {
         prepareGame();
     },[]);
-
-    const saveTime =(time)=> {
-
-    }
 
     const prepareGame =()=> {
         let tempTilesArr = [].concat(initialTiles);
@@ -109,10 +99,28 @@ const MainPage = () => {
         }
     }
 
+    const setWinner =()=> {
+        SetGameStart(false);
+        const player = {
+            name: userName,
+            level: userLevel,
+            time: playTime
+        }
+        setResult(player);
+        history.push("/result");
+        console.log(player);
+    }
+
+    const saveTime =(time)=> {
+        playTime = time;
+    }
+
+
     const setTIlesByLevel =(id)=>{
         switch (id){
             case 1:
-                return 5;
+                //5
+                return 2;
             case 2:
                 return 10;
             case 3:
@@ -125,10 +133,10 @@ const MainPage = () => {
     return (
         <Container>
             <Row>
-                <Col>{<Timer startGame={gameStart} getTime={saveTime} />}</Col>
+                <Col>{gameStart && <Timer startGame={gameStart} getTime={saveTime} />}</Col>
             </Row>
             <Row>
-                <Col>{gameStart && <GameArea getSettings={gameTiles} />}</Col>
+                <Col>{gameStart && <GameArea getSettings={gameTiles} getWinner={setWinner} />}</Col>
             </Row>
         </Container>
     )

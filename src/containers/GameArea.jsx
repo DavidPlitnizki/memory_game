@@ -1,77 +1,91 @@
-import React,{useState,useEffect, useCall} from 'react';
+import React,{useState,useEffect, useCallback} from 'react';
 import GameTile from '../components/GameTile.jsx';
+import {useCompare} from '../hooks/compare.hook';
 import {Container ,Row} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
-const GameArea = ({getSettings}) => {
+let canPlay = false;
+
+const GameArea = ({getSettings, getWinner}) => {
     const [gameFields, setGameFilds] = useState(getSettings);
+    const [pairsCount, setPairsCount] = useState(0);
     const [superiorTiles, setSuperiorTiles] = useState([]);
-    const [canClick, setCanClick] = useState(false);
+    const {compare} = useCompare();
 
 
     useEffect(()=> {
-        setCanClick(true);
+        canPlay = true;
     },[]);
 
     useEffect(()=> {
-       setTimeout(()=> {
         compareTiles();
-       },300);
     },[gameFields]);
 
-    const onSelectTile =({id, value})=> {
+    useEffect(()=> {
+        isFinishGame();
+    },[pairsCount]);
+
+
+    const onSelectTile =({id})=> {
+        if(!canPlay) return;
+        canPlay = false;
         let modTile;
-        if(!canClick) return;
+
         const modifiledTiles = gameFields.map((tile, i)=> {
-            if(i === id) {
-                tile.selected = !tile.selected;
-                modTile = tile;
+            if(compare(i, id)) {
+                if(!tile.selected){
+                    tile.selected = !tile.selected;
+                    modTile = tile;
+                }
             }
             return tile;
         })
-        setCanClick(false);
         setSuperiorTiles([...superiorTiles, modTile]);
         setGameFilds(modifiledTiles);
     }
 
-    const compareTiles=()=> {
-        if(superiorTiles.length > 1) {
-            if(superiorTiles[0].tile_num === superiorTiles[1].tile_num) {
+    const isFinishGame =()=> {
+        if(pairsCount === gameFields.length) {
+            getWinner();
+        }
+    }
+
+    const compareTiles= useCallback(()=> {
+
+        setTimeout(()=> {
+    
+        if(superiorTiles.length === 2) {
+            if( compare(superiorTiles[0].tile_num, superiorTiles[1].tile_num) ) {
+                setPairsCount(pairsCount + 2);
                 setSuperiorTiles([]);
             } else {
-                const modifiledTiles = gameFields.map((tile, i)=> {
-                    if(superiorTiles[0].tile_num === tile.tile_num || superiorTiles[1].tile_num === tile.tile_num) {
+                const modifiledTiles = gameFields.map((tile)=> {
+                    if(compare(superiorTiles[0].tile_num, tile.tile_num) ||
+                     compare(superiorTiles[1].tile_num, tile.tile_num)) {
                         if(tile.selected) {
                             tile.selected = !tile.selected;
                         }
                     }
                     return tile;
                 })
-
-                setGameFilds(modifiledTiles);
                 setSuperiorTiles([]);
+                setGameFilds(modifiledTiles);
+                
             }
         }
-        setCanClick(true);
-    }
+        canPlay = true;
+    },300)
 
-    const renderGameTile=()=>{
-        let arr = [];
-        if(gameFields.length > 0){
-            return arr = gameFields.map((tile,i)=>{
-                return <GameTile num={tile.tile_num} id={i} key={'id_'+i} select={onSelectTile} open={tile.selected} />
-            })
-        }
-        return arr;
-        
-    }
+    },[superiorTiles, gameFields])
 
 
     return (
         <Container className={styles.gameAreaCont}>
             <Row className='mb-2'>
-               {renderGameTile()}
+               {
+                gameFields.map((tile, i) => <GameTile num={tile.tile_num} id={i} key={`id_${i}`} select={onSelectTile} open={tile.selected} />)
+               }
             </Row>
            
         </Container>
