@@ -137,4 +137,42 @@
     margin-top: 1rem;
 }
 
+/*Preloader*/
+
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 4rem);
+}
+
+/*result grid*/
+.result_container {
+    margin-top: 2rem;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color:wheat;
+}
+
+table tbody tr:nth-child(even) {
+    background: whitesmoke;
+  }
+
+
+table tbody tr td:nth-child(3) {
+    text-align: right;
+}
+
+table tbody tr td:last-child {
+    padding-right: 1.5rem;
+}
+
 

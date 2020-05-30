@@ -1,7 +1,5 @@
-import React,{useState,useContext, useEffect, useCallback} from 'react';
+import React,{useState,useContext, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
-import {useAuth} from '../hooks/auth.hook';
-import Game from '../containers/Game';
 import {useStore} from '../hooks/store.hook';
 import GameArea from '../containers/GameArea';
 import Timer from '../components/Timer.jsx';
@@ -108,7 +106,6 @@ const MainPage = () => {
         }
         setResult(player);
         history.push("/result");
-        console.log(player);
     }
 
     const saveTime =(time)=> {
