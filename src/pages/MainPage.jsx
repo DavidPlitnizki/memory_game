@@ -1,8 +1,8 @@
 import React,{useState,useContext, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
 import {useStore} from '../hooks/store.hook';
 import GameArea from '../containers/GameArea';
-import Timer from '../components/Timer.jsx';
+import Timer from '../components/Timer';
+import WinPopup from '../components/WinPopup';
 import {AuthContext} from '../context/AuthContext';
 import {Container ,Row, Col} from 'react-bootstrap';
 
@@ -26,18 +26,20 @@ let playTime = "00:00";
 
 const MainPage = () => {
     const {userName, userLevel} = useContext(AuthContext);
-    // const {playerName, playerLevel} = useAuth();
     
     /* Will be 3 states init play finish */
     const [gameStart, SetGameStart] = useState(false);
     const [gameTiles, setGameTiles] = useState([]);
+    const [winPopup, setWinPopup] = useState(false);
     const {setResult} = useStore();
-    let history = useHistory();
     
-    /* testing */
     useEffect(()=> {
         prepareGame();
     },[]);
+
+    useEffect(()=> {
+        if(!winPopup) prepareGame();
+    },[winPopup]);
 
     const prepareGame =()=> {
         let tempTilesArr = [].concat(initialTiles);
@@ -49,6 +51,10 @@ const MainPage = () => {
             setGameTiles(filtredTiles);
             SetGameStart(true);
         }
+    }
+
+    const showWinPopup=(bool)=> {
+        setWinPopup(bool);
     }
 
     const fillGameTiles =(tiles, tileslength)=>{
@@ -105,7 +111,7 @@ const MainPage = () => {
             time: playTime
         }
         setResult(player);
-        history.push("/result");
+        showWinPopup(true);
     }
 
     const saveTime =(time)=> {
@@ -128,14 +134,19 @@ const MainPage = () => {
     }
 
     return (
-        <Container>
-            <Row>
-                <Col>{gameStart && <Timer startGame={gameStart} getTime={saveTime} />}</Col>
-            </Row>
-            <Row>
-                <Col>{gameStart && <GameArea getSettings={gameTiles} getWinner={setWinner} />}</Col>
-            </Row>
-        </Container>
+        <React.Fragment>
+        {
+            (winPopup) ? <WinPopup name={userName} level={userLevel.difficult} time={playTime} showWinPopup={showWinPopup} /> :
+            <Container>
+                <Row>
+                    <Col>{gameStart && <Timer startGame={gameStart} getTime={saveTime} />}</Col>
+                </Row>
+                <Row>
+                    <Col>{gameStart && <GameArea getSettings={gameTiles} getWinner={setWinner} />}</Col>
+                </Row>
+            </Container>
+        }
+        </React.Fragment>
     )
 }
 

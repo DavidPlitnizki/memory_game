@@ -15,20 +15,20 @@ const App = () => {
 
     return(
         <Container fluid={true} className={styles.wrapper}>
-        <AuthContext.Provider value={{userLevel:playerLevel, userName:playerName, login, isAuthenticated}}>
-        <Router>
-            <Row>
-                <Col>
-                    {isAuth && <NavBar />}
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    {routes}
-                </Col>
-            </Row>
-        </Router>
-        </AuthContext.Provider>
+            <AuthContext.Provider value={{userLevel:playerLevel, userName:playerName, login, isAuthenticated}}>
+            <Router>
+                <Row>
+                    <Col>
+                        {isAuth && <NavBar />}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {routes}
+                    </Col>
+                </Row>
+            </Router>
+            </AuthContext.Provider>
         </Container>
     )
 }

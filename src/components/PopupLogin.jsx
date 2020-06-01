@@ -54,7 +54,5 @@ const PopupLogin = props => {
 }
 
 
-// props.setGame({'userName':curr_name, 'level':curr_level});
-
 
 export default PopupLogin;
