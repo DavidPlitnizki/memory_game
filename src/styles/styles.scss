@@ -1,7 +1,10 @@
 
 .wrapper {
-    background-color: #8d8cff47;
     min-height: 100vh;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-size: 400%;
+    animation: BGmoves linear 5s infinite;
 }
 
 .steps{
@@ -104,6 +107,7 @@
 
 .nav_item {
     display: flex;
+    margin-bottom: 0;
 }
 .nav_item li {
     list-style: none;
@@ -114,6 +118,7 @@
 .login_wrapper {
     display: flex;
     flex-direction: column;
+    background-color: ghostwhite;
     max-width: 400px;
     margin: 0 auto;
     border: double 5px #2378dc7d;
@@ -252,6 +257,20 @@ table tbody tr td:last-child {
     100% {
       transform:  translate(-50%, -50%) rotate(0deg) scaleX(1.20) scaleY(1.20) ;
     }
+  }
+
+  @keyframes BGmoves {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      50% {
+        background-position: -100% -100%;
+      }
+
+      100% {
+        background-position: 0% 0%;
+      }
   }
   
   
