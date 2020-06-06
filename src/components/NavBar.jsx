@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container ,Row, Col, Nav, Navbar} from 'react-bootstrap';
+import {Container ,Row, Col, Navbar} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import styles from '../styles/styles.scss';
 const NavBar = () => {
@@ -10,7 +10,7 @@ const NavBar = () => {
                 <Navbar bg="dark" className="justify-content-end">
                     <ul className={styles.nav_item}>
                         <li><NavLink to="login">New User</NavLink></li>
-                        <li><NavLink to="main">Main</NavLink></li>
+                        <li><NavLink to="game">Game</NavLink></li>
                         <li><NavLink to="result">Result</NavLink></li>
                     </ul>
                 </Navbar>

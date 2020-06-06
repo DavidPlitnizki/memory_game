@@ -4,7 +4,7 @@ import {Form} from 'react-bootstrap';
 import {AuthContext} from '../../context/AuthContext';
 
 
-const RegistrationLogin = props => {
+const RegistrationLogin = ({saveNameCB}) => {
   const {userName} = useContext(AuthContext);
   const [name, setName] = useState('');
 
@@ -14,7 +14,7 @@ const RegistrationLogin = props => {
 
     const setChar = useCallback((name)=>{
       setName(name);
-      props.saveNameCB(name);
+      saveNameCB(name);
     },[])
 
     return (

@@ -1,8 +1,7 @@
 import React, {useState, useContext} from 'react';
-import {Modal,Button, Form, Row, Col} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import RegistrationLogin from '../components/FormRegistration/RegistrationLogin.jsx';
 import DropDown from '../components/FormRegistration/DropDown.jsx';
-import {useAuth} from '../hooks/auth.hook';
 import styles from '../styles/styles.scss';
 import {AuthContext} from '../context/AuthContext';
 import {useHistory} from 'react-router-dom';

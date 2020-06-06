@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/styles.scss';
 
-const Curtain = props =>{
+const Curtain = () => {
     return(
         <div className={styles.curtainWrapper} />
     )

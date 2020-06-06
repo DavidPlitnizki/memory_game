@@ -180,6 +180,14 @@ table tbody tr td:last-child {
     padding-right: 1.5rem;
 }
 
+.results_btn {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin-top: 1rem;
+}
+
 /*win popup*/
 .container_winPopup {
     display: grid;

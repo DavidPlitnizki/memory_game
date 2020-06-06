@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
 const WinPopup =({name, level, time, showWinPopup})=> {
@@ -33,6 +34,13 @@ const WinPopup =({name, level, time, showWinPopup})=> {
             </section>
         </div>
     )
+}
+
+WinPopup.propTypes = {
+    name: PropTypes.string.isRequired,
+    level: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    showWinPopup: PropTypes.func.isRequired
 }
 
 export default WinPopup;

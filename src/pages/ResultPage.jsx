@@ -1,16 +1,23 @@
-import React, {useEffect,useState} from 'react';
-import ResultUser from '../components/Result/ResultUser';
+import React, {useEffect,useState, lazy, Suspense} from 'react';
+const ResultUser = lazy(() => import('../components/Result/ResultUser'));
 import Preloader from '../components/Preloader';
 import {useStore} from '../hooks/store.hook';
 
 const ResultPage = () => {
-    const {getResult} = useStore();
-    const [results, setResults] = useState([])
+    const {getResult, resetList} = useStore();
+    const [results, setResults] = useState([]);
+
+    
 
     useEffect(()=> {
         const results = getResult();
         if(results) sortResultsByInc(results);
     },[]);
+
+    const resetWinners =()=> {
+        resetList();
+        setResults([]);
+    }
 
     const sortResultsByInc =(results)=> {
         const res = results.sort((a, b) => (a.time < b.time) ? -1 : 1);
@@ -20,7 +27,7 @@ const ResultPage = () => {
     return (
         
         <React.Fragment>
-        {results.length > 0 ? <ResultUser results={results} /> :<Preloader />}
+            {results.length > 0 ? <Suspense fallback={<Preloader />}> <ResultUser results={results} resetWinners={resetWinners} /> </Suspense> :<Preloader />}
         </React.Fragment>
     )
 }

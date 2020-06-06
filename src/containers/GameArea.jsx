@@ -93,13 +93,8 @@ const GameArea = ({getSettings, getWinner}) => {
 }
 
 GameArea.propTypes = {
-    // endingGame: PropTypes.func.isRequired,
-    // getSettings: PropTypes.shape({
-    //     id: PropTypes.number.isRequired,
-    //     level: PropTypes.object.isRequired,
-    //     time: PropTypes.number.isRequired,
-    //     userName: PropTypes.string.isRequired
-    // })
+    getSettings: PropTypes.array.isRequired,
+    getWinner: PropTypes.func.isRequired
 }
 
 export default GameArea;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Dropdown} from 'react-bootstrap';
 import {AuthContext} from '../../context/AuthContext';
 
-const DropDown = props => {
+const DropDown = ({selectLevel}) => {
    const [level, setLevel] = useState({id:0, 'difficult':'-'});
    const {userLevel} = useContext(AuthContext);
 
@@ -15,7 +15,7 @@ const DropDown = props => {
         if(!lev) return;
         setLevel(lev);
         if(lev.id != 0){
-            props.selectLevel(lev);
+            selectLevel(lev);
         }
     },[])
 

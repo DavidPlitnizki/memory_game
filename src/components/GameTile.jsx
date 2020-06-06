@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
-
-
 const GameTile = ({id, num, select, open}) => {
     function selectCard() {
         select({id,'value':num});
@@ -19,10 +17,10 @@ const GameTile = ({id, num, select, open}) => {
 }
 
 GameTile.propTypes = {
-    // id: PropTypes.number.isRequired,
-    // num: PropTypes.number.isRequired,
-    // open: PropTypes.bool.isRequired,
-    // select: PropTypes.func.isRequired
+    id: PropTypes.number.isRequired,
+    num: PropTypes.number.isRequired,
+    open: PropTypes.bool.isRequired,
+    select: PropTypes.func.isRequired
 }
 
 export default GameTile;

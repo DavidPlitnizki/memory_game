@@ -1,12 +1,11 @@
 import React from 'react';
-import {Container ,Row, Col} from 'react-bootstrap';
-import styles from './styles/styles.scss';
-import {useRoutes} from './routes';
 import NavBar from './components/NavBar';
-import {BrowserRouter as Router} from 'react-router-dom';
 import {useAuth} from './hooks/auth.hook';
 import {AuthContext} from './context/AuthContext';
-
+import {useRoutes} from './routes';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {Container ,Row, Col} from 'react-bootstrap';
+import styles from './styles/styles.scss';
 
 const App = () => {
     const {isAuth, login, playerName, playerLevel} = useAuth();

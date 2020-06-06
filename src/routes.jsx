@@ -1,21 +1,28 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import MainPage from './pages/MainPage';
-import ResultPage from './pages/ResultPage';
+import Preloader from './components/Preloader';
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const MainPage = lazy(() => import('./pages/MainPage'));
+const ResultPage = lazy(() => import('./pages/ResultPage'));
 
 export const useRoutes = isAuthenticated => {
     if(isAuthenticated) {
         return ( 
         <Switch>
             <Route path="/login" exact>
-                <LoginPage />
+                <Suspense fallback={<Preloader/>}>
+                    <LoginPage />
+                </Suspense>
             </Route>
             <Route path="/main" exact>
-                <MainPage />
+                <Suspense fallback={<Preloader/>}>
+                    <MainPage />
+                </Suspense>
             </Route>
             <Route path="/result" exact>
-                <ResultPage />
+                <Suspense fallback={<Preloader/>}>
+                    <ResultPage />
+                </Suspense>
             </Route>
             <Redirect to="/main" />
         </Switch>
@@ -24,7 +31,9 @@ export const useRoutes = isAuthenticated => {
         return (
         <Switch>
             <Route path="/login" exact>
-                <LoginPage />
+                <Suspense fallback={<Preloader/>}>
+                    <LoginPage />
+                </Suspense>
             </Route>
             <Redirect to="/login" />
         </Switch>

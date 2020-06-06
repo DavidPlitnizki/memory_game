@@ -1,8 +1,9 @@
-import React,{useState,useContext, useEffect} from 'react';
-import {useStore} from '../hooks/store.hook';
+import React,{useState,useContext, useEffect, lazy, Suspense} from 'react';
 import GameArea from '../containers/GameArea';
 import Timer from '../components/Timer';
-import WinPopup from '../components/WinPopup';
+const WinPopup = lazy(() => import('../components/WinPopup'));
+import Preloader from '../components/Preloader';
+import {useStore} from '../hooks/store.hook';
 import {AuthContext} from '../context/AuthContext';
 import {Container ,Row, Col} from 'react-bootstrap';
 
@@ -136,7 +137,7 @@ const MainPage = () => {
     return (
         <React.Fragment>
         {
-            (winPopup) ? <WinPopup name={userName} level={userLevel.difficult} time={playTime} showWinPopup={showWinPopup} /> :
+            (winPopup) ? <Suspense fallback={<Preloader />}><WinPopup name={userName} level={userLevel.difficult} time={playTime} showWinPopup={showWinPopup} /> </Suspense> :
             <Container>
                 <Row>
                     <Col>{gameStart && <Timer startGame={gameStart} getTime={saveTime} />}</Col>

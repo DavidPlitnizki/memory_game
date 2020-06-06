@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/styles.scss';
 
 const Timer = ({startGame, getTime}) => {
+    
     const [time, setTime] = useState(0);
 
     useEffect(()=>{
@@ -49,12 +50,12 @@ const Timer = ({startGame, getTime}) => {
 
 
 Timer.propTypes = {
-    // getTime: PropTypes.func.isRequired,
-    // startGame: PropTypes.bool.isRequired
+    getTime: PropTypes.func.isRequired,
+    startGame: PropTypes.bool.isRequired
 }
 
 Timer.defaultProps = {
-    startGame: null
+    startGame: true
 }
 
 export default Timer;
