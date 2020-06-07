@@ -123,8 +123,7 @@ const MainPage = () => {
     const setTIlesByLevel =(id)=>{
         switch (id){
             case 1:
-                //5
-                return 2;
+                return 5;
             case 2:
                 return 10;
             case 3:

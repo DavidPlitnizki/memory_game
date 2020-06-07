@@ -27,7 +27,7 @@ const LoginPage = props => {
             setError('Enter Name!!!');
             return;
         }else if(!level){
-            setError('Select Level');
+            setError('Select Level!!!');
             return;
         }
 

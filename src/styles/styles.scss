@@ -139,7 +139,11 @@
 
 .login_wrapper .login_error {
     color: red;
+    height: 2rem;
     margin-top: 1rem;
+    border-radius: .4rem;
+    box-shadow: inset 0 0 .5rem 0 rgba(0, 0, 0, 0.75);
+    text-align: center;
 }
 
 /*Preloader*/
