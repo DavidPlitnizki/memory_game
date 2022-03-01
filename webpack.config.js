@@ -9,7 +9,8 @@ module.exports = {
     output: {
       path: __dirname + '/dist',
       publicPath: '/',
-      filename: 'bundle.js'
+      filename: '[name].bundle.js',
+      chunkFilename: '[name].bundle.js'
     },
     module: {
         rules: [

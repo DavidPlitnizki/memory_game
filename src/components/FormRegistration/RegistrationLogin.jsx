@@ -1,18 +1,27 @@
-import React,{useRef} from 'react';
+import React, {useState, useEffect, useCallback, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Form} from 'react-bootstrap';
+import {AuthContext} from '../../context/AuthContext';
 
-const RegistrationLogin = props => {
 
-    const setChar=(e)=>{
-       props.saveNameCB(e.currentTarget.value);
-    }
+const RegistrationLogin = ({saveNameCB}) => {
+  const {userName} = useContext(AuthContext);
+  const [name, setName] = useState('');
+
+    useEffect(()=> {
+      setChar(userName);
+    },[userName]);
+
+    const setChar = useCallback((name)=>{
+      setName(name);
+      saveNameCB(name);
+    },[])
 
     return (
-        <Form>
+      <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Enter Name:</Form.Label>
-          <Form.Control type="text" placeholder="Enter name" onChange={setChar} />
+          <Form.Control type="text" onChange={(e)=> setChar(e.currentTarget.value)} value={name} />
         </Form.Group>
       </Form>
     )
