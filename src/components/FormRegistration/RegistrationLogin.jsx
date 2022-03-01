@@ -6,11 +6,11 @@ import {AuthContext} from '../../context/AuthContext';
 
 const RegistrationLogin = ({saveNameCB}) => {
   const {userName} = useContext(AuthContext);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(userName || '');
 
-    useEffect(()=> {
-      setChar(userName);
-    },[userName]);
+    // useEffect(()=> {
+    //   setChar(userName);
+    // },[userName]);
 
     const setChar = useCallback((name)=>{
       setName(name);
