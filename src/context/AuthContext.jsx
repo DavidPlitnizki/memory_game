@@ -1,10 +1,10 @@
-import {createContext} from 'react';
+import { createContext } from 'react'
 
-function noop(){};
+function noop() {}
 
 export const AuthContext = createContext({
     level: null,
     userName: null,
     login: noop,
-    isAuthinticated: false
-});
+    isAuthinticated: false,
+})

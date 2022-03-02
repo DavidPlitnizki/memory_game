@@ -1,106 +1,113 @@
-
 .wrapper {
     min-height: 100vh;
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background: rgb(238, 174, 202);
+    background: radial-gradient(
+        circle,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(148, 187, 233, 1) 100%
+    );
     background-size: 400%;
     animation: BGmoves linear 5s infinite;
 }
 
-.steps{
+.steps {
     position: absolute;
     left: 1rem;
 }
 
-.timer_wrapper{
+.timer_wrapper {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
-.timer_value{
+.timer_value {
     font-size: 2rem;
     font-weight: bold;
     font-family: 'Exo', sans-serif;
     width: 14rem;
 }
 
-.tile{
+.tile {
     width: 10rem;
     height: auto;
-    box-shadow: 0px 0px 35px 4px rgba(255,255,255,1);
+    box-shadow: 0px 0px 35px 4px rgba(255, 255, 255, 1);
     border-radius: 1rem;
     overflow: hidden;
     position: relative;
-    margin: .2rem;
+    margin: 0.2rem;
 }
 
-.flag{
+.flag {
     width: 1.5rem;
 }
 
 .frontImg,
-.backImg{
+.backImg {
     position: relative;
     width: 100%;
     height: auto;
     backface-visibility: hidden;
-    transition: transform .15s;
+    transition: transform 0.15s;
 }
 
-.frontImg{
-    transition-delay: .1s;
+.frontImg {
+    transition-delay: 0.1s;
 }
 
-.backImg{
+.backImg {
     position: absolute;
     left: 0;
     top: 0;
 }
 
-.tile.matched{
+.tile.matched {
     pointer-events: none;
 }
 
-.backImg{
+.backImg {
     transform: rotateY(0deg);
     opacity: 1;
 }
 
-.frontImg{
+.frontImg {
     transform: rotateY(270deg);
 }
 
-.tile.matched .backImg{
+.tile.matched .backImg {
     transform: rotateY(90deg);
 }
 
-.tile.matched .frontImg{
+.tile.matched .frontImg {
     transform: rotateY(0deg);
 }
 
-.gameAreaCont{
+.gameAreaCont {
     margin-block-start: 1.5rem;
 }
 
-
-.modalFooter{
+.modalFooter {
     justify-content: space-around;
 }
 
-.results_tbody{
+.results_tbody {
     white-space: nowrap;
     font-weight: bold;
 }
 
-.curtainWrapper{
+.curtainWrapper {
     position: absolute;
     width: 100%;
     height: 100vh;
     top: 0;
     left: 0;
-    background: linear-gradient(to bottom, #c5deea 0%,#8abbd7 31%,#066dab 100%);
+    background: linear-gradient(
+        to bottom,
+        #c5deea 0%,
+        #8abbd7 31%,
+        #066dab 100%
+    );
 }
 
 /*NavBar*/
@@ -111,7 +118,7 @@
 }
 .nav_item li {
     list-style: none;
-    padding: 0 .5rem 0 .5rem;
+    padding: 0 0.5rem 0 0.5rem;
 }
 
 /*Login*/
@@ -125,7 +132,7 @@
     border-radius: 1rem;
     padding: 1rem;
     margin-top: 10rem;
-    box-shadow: 0px 0px 34px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
 }
 
 .login_title {
@@ -141,7 +148,7 @@
     color: red;
     height: 2rem;
     margin-top: 1rem;
-    border-radius: .4rem;
+    border-radius: 0.4rem;
     text-align: center;
 }
 
@@ -167,13 +174,12 @@ table {
 }
 
 table tbody tr:nth-child(odd) {
-    background-color:wheat;
+    background-color: wheat;
 }
 
 table tbody tr:nth-child(even) {
     background: whitesmoke;
-  }
-
+}
 
 table tbody tr td:nth-child(3) {
     text-align: right;
@@ -206,13 +212,14 @@ table tbody tr td:last-child {
     width: 400px;
     height: 300px;
     border-radius: 2rem;
-    border: .1rem solid #000;
-    box-shadow: 0 0 0 0.2rem #c2c2ff, 0 0 0 0.3rem black, 0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
+    border: 0.1rem solid #000;
+    box-shadow: 0 0 0 0.2rem #c2c2ff, 0 0 0 0.3rem black,
+        0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .container_winPopup h2 {
     text-transform: uppercase;
-    letter-spacing: .2rem;
+    letter-spacing: 0.2rem;
     font-weight: bold;
 }
 
@@ -229,62 +236,56 @@ table tbody tr td:last-child {
 
 .open {
     animation: animationWins linear 1s;
-    transform-origin: 50% 50% ;
-    transform: translate(-50%, -50%) scale(1.20); 
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
-
-@keyframes animationWins{
+@keyframes animationWins {
     0% {
-      transform:  translate(-50%, -50%) rotate(0deg) scaleX(1.00) scaleY(1.00) ;
+        transform: translate(-50%, -50%) rotate(0deg) scaleX(1) scaleY(1);
     }
     10% {
-      transform:  translate(-50%, -50%) rotate(-3deg) scaleX(0.80) scaleY(0.80) ;
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
     }
     20% {
-      transform:  translate(-50%, -50%) rotate(-3deg) scaleX(0.80) scaleY(0.80) ;
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
     }
     30% {
-      transform:  translate(-50%, -50%) rotate(3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
     }
     40% {
-      transform:  translate(-50%, -50%) rotate(-3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
     }
     50% {
-      transform:  translate(-50%, -50%) rotate(3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
     }
     60% {
-      transform:  translate(-50%, -50%) rotate(-3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
     }
     70% {
-      transform:  translate(-50%, -50%) rotate(3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
     }
     80% {
-      transform:  translate(-50%, -50%) rotate(-3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
     }
     90% {
-      transform:  translate(-50%, -50%) rotate(3deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
     }
     100% {
-      transform:  translate(-50%, -50%) rotate(0deg) scaleX(1.20) scaleY(1.20) ;
+        transform: translate(-50%, -50%) rotate(0deg) scaleX(1.2) scaleY(1.2);
     }
-  }
+}
 
-  @keyframes BGmoves {
-      0% {
+@keyframes BGmoves {
+    0% {
         background-position: 0% 0%;
-      }
+    }
 
-      50% {
+    50% {
         background-position: -100% -100%;
-      }
+    }
 
-      100% {
+    100% {
         background-position: 0% 0%;
-      }
-  }
-  
-  
-
-
-
+    }
+}

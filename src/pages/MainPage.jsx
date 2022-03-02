@@ -1,153 +1,186 @@
-import React,{useState,useContext, useEffect, lazy, Suspense} from 'react';
-import GameArea from '../containers/GameArea';
-import Timer from '../components/Timer';
-const WinPopup = lazy(() => import('../components/WinPopup'));
-import Preloader from '../components/Preloader';
-import {useStore} from '../hooks/store.hook';
-import {AuthContext} from '../context/AuthContext';
-import {Container ,Row, Col} from 'react-bootstrap';
+import React, { useState, useContext, useEffect, lazy, Suspense } from 'react'
+import GameArea from '../containers/GameArea'
+import Timer from '../components/Timer'
+const WinPopup = lazy(() => import('../components/WinPopup'))
+import Preloader from '../components/Preloader'
+import { useStore } from '../hooks/store.hook'
+import { AuthContext } from '../context/AuthContext'
+import { Container, Row, Col } from 'react-bootstrap'
 
-const initialTiles = [{'tile_num':1, 'selected':false},
-                    {'tile_num':2, 'selected':false},
-                    {'tile_num':3, 'selected':false},
-                    {'tile_num':4, 'selected':false},
-                    {'tile_num':5, 'selected':false},
-                    {'tile_num':6, 'selected':false},
-                    {'tile_num':7, 'selected':false},
-                    {'tile_num':8, 'selected':false},
-                    {'tile_num':9, 'selected':false},
-                    {'tile_num':10, 'selected':false},
-                    {'tile_num':11, 'selected':false},
-                    {'tile_num':12, 'selected':false},
-                    {'tile_num':13, 'selected':false},
-                    {'tile_num':14, 'selected':false},
-                    {'tile_num':15, 'selected':false}];
+const initialTiles = [
+    { tile_num: 1, selected: false },
+    { tile_num: 2, selected: false },
+    { tile_num: 3, selected: false },
+    { tile_num: 4, selected: false },
+    { tile_num: 5, selected: false },
+    { tile_num: 6, selected: false },
+    { tile_num: 7, selected: false },
+    { tile_num: 8, selected: false },
+    { tile_num: 9, selected: false },
+    { tile_num: 10, selected: false },
+    { tile_num: 11, selected: false },
+    { tile_num: 12, selected: false },
+    { tile_num: 13, selected: false },
+    { tile_num: 14, selected: false },
+    { tile_num: 15, selected: false },
+]
 
-let playTime = "00:00";
+let playTime = '00:00'
 
 const MainPage = () => {
-    const {userName, userLevel} = useContext(AuthContext);
-    
+    const { userName, userLevel } = useContext(AuthContext)
+
     /* Will be 3 states init play finish */
-    const [gameStart, SetGameStart] = useState(false);
-    const [gameTiles, setGameTiles] = useState([]);
-    const [winPopup, setWinPopup] = useState(false);
-    const {setResult} = useStore();
-    
-    useEffect(()=> {
-        prepareGame();
-    },[]);
+    const [gameStart, SetGameStart] = useState(false)
+    const [gameTiles, setGameTiles] = useState([])
+    const [winPopup, setWinPopup] = useState(false)
+    const { setResult } = useStore()
 
-    useEffect(()=> {
-        if(!winPopup) prepareGame();
-    },[winPopup]);
+    useEffect(() => {
+        prepareGame()
+    }, [])
 
-    const prepareGame =()=> {
-        let tempTilesArr = [].concat(initialTiles);
-        const tileslength = setTIlesByLevel(userLevel.id);
+    useEffect(() => {
+        if (!winPopup) prepareGame()
+    }, [winPopup])
 
-       const filtredTiles = fillGameTiles(tempTilesArr, tileslength);
+    const prepareGame = () => {
+        let tempTilesArr = [].concat(initialTiles)
+        const tileslength = setTIlesByLevel(userLevel.id)
 
-        if(filtredTiles.length > 0) {
-            setGameTiles(filtredTiles);
-            SetGameStart(true);
+        const filtredTiles = fillGameTiles(tempTilesArr, tileslength)
+
+        if (filtredTiles.length > 0) {
+            setGameTiles(filtredTiles)
+            SetGameStart(true)
         }
     }
 
-    const showWinPopup=(bool)=> {
-        setWinPopup(bool);
+    const showWinPopup = (bool) => {
+        setWinPopup(bool)
     }
 
-    const fillGameTiles =(tiles, tileslength)=>{
-        let fArr=[];
-        let sArr=[];
-        let filtredTiles = [];
+    const fillGameTiles = (tiles, tileslength) => {
+        let fArr = []
+        let sArr = []
+        let filtredTiles = []
 
-        while(tileslength) {
-            let selectedTile = Math.floor(Math.random() * tileslength);
+        while (tileslength) {
+            let selectedTile = Math.floor(Math.random() * tileslength)
 
             /**random positions in arraies */
-            const t1 = setRandomRageNumber(0, tileslength);
-            const t2 = setRandomRageNumber(0, tileslength);
+            const t1 = setRandomRageNumber(0, tileslength)
+            const t2 = setRandomRageNumber(0, tileslength)
 
             /**fill arraies */
-            fillDirectionArray(fArr, t1, {
-                'tile_num' : tiles[selectedTile].tile_num,
-                'selected' : tiles[selectedTile].selected
-            }, 'END');
-            fillDirectionArray(sArr, t2, {
-                'tile_num' : tiles[selectedTile].tile_num,
-                'selected' : tiles[selectedTile].selected
-            }, 'START');
+            fillDirectionArray(
+                fArr,
+                t1,
+                {
+                    tile_num: tiles[selectedTile].tile_num,
+                    selected: tiles[selectedTile].selected,
+                },
+                'END'
+            )
+            fillDirectionArray(
+                sArr,
+                t2,
+                {
+                    tile_num: tiles[selectedTile].tile_num,
+                    selected: tiles[selectedTile].selected,
+                },
+                'START'
+            )
 
             //cut array
-            tiles.splice(selectedTile,1);
+            tiles.splice(selectedTile, 1)
 
-            tileslength--;
+            tileslength--
         }
 
-        filtredTiles = fArr.concat(sArr).filter((el)=> el != null);
-        return filtredTiles;
+        filtredTiles = fArr.concat(sArr).filter((el) => el != null)
+        return filtredTiles
     }
 
     const setRandomRageNumber = (startPoint, endPoint) => {
-        return Math.floor(Math.random() * endPoint) + startPoint;
+        return Math.floor(Math.random() * endPoint) + startPoint
     }
 
     const fillDirectionArray = (arr, index, data, dir) => {
-        if(arr[index] && dir === 'END') {
-            arr.push(data);
-        }else if(arr[index] && dir === 'START') {
-            arr.unshift(data);
+        if (arr[index] && dir === 'END') {
+            arr.push(data)
+        } else if (arr[index] && dir === 'START') {
+            arr.unshift(data)
         } else {
-            arr[index] = data;
+            arr[index] = data
         }
     }
 
-    const setWinner =()=> {
-        SetGameStart(false);
+    const setWinner = () => {
+        SetGameStart(false)
         const player = {
             name: userName,
             level: userLevel,
-            time: playTime
+            time: playTime,
         }
-        setResult(player);
-        showWinPopup(true);
+        setResult(player)
+        showWinPopup(true)
     }
 
-    const saveTime =(time)=> {
-        playTime = time;
+    const saveTime = (time) => {
+        playTime = time
     }
 
-
-    const setTIlesByLevel =(id)=>{
-        switch (id){
+    const setTIlesByLevel = (id) => {
+        switch (id) {
             case 1:
-                return 5;
+                return 5
             case 2:
-                return 10;
+                return 10
             case 3:
-                return 15;
+                return 15
             default:
-                return 5;
+                return 5
         }
     }
 
     return (
         <React.Fragment>
-        {
-            (winPopup) ? <Suspense fallback={<Preloader />}><WinPopup name={userName} level={userLevel.difficult} time={playTime} showWinPopup={showWinPopup} /> </Suspense> :
-            <Container>
-                <Row>
-                    <Col>{gameStart && <Timer startGame={gameStart} getTime={saveTime} />}</Col>
-                </Row>
-                <Row>
-                    <Col>{gameStart && <GameArea getSettings={gameTiles} getWinner={setWinner} />}</Col>
-                </Row>
-            </Container>
-        }
+            {winPopup ? (
+                <Suspense fallback={<Preloader />}>
+                    <WinPopup
+                        name={userName}
+                        level={userLevel.difficult}
+                        time={playTime}
+                        showWinPopup={showWinPopup}
+                    />{' '}
+                </Suspense>
+            ) : (
+                <Container>
+                    <Row>
+                        <Col>
+                            {gameStart && (
+                                <Timer
+                                    startGame={gameStart}
+                                    getTime={saveTime}
+                                />
+                            )}
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            {gameStart && (
+                                <GameArea
+                                    getSettings={gameTiles}
+                                    getWinner={setWinner}
+                                />
+                            )}
+                        </Col>
+                    </Row>
+                </Container>
+            )}
         </React.Fragment>
     )
 }
 
-export default MainPage;
+export default MainPage
