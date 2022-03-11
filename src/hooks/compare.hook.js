@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 
 export const useCompare = () => {
     const compare = useCallback((tile_1, tile_2) => {
