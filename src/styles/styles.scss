@@ -1,286 +1,291 @@
 .wrapper {
-  min-height: 100vh;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  );
-  background-size: 400%;
-  animation: BGmoves linear 5s infinite;
+    min-height: 100vh;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(
+        circle,
+        rgba(238, 174, 202, 1) 0%,
+        rgba(148, 187, 233, 1) 100%
+    );
+    background-size: 400%;
+    animation: BGmoves linear 5s infinite;
 }
 
 .steps {
-  position: absolute;
-  left: 1rem;
+    position: absolute;
+    left: 1rem;
 }
 
 .timer_wrapper {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .timer_value {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: "Exo", sans-serif;
-  width: 14rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Exo', sans-serif;
+    width: 14rem;
 }
 
 .tile {
-  width: 10rem;
-  height: auto;
-  box-shadow: 0px 0px 35px 4px rgba(255, 255, 255, 1);
-  border-radius: 1rem;
-  overflow: hidden;
-  position: relative;
-  margin: 0.2rem;
+    width: 10rem;
+    height: auto;
+    box-shadow: 0px 0px 35px 4px rgba(255, 255, 255, 1);
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    margin: 0.2rem;
 }
 
 .flag {
-  width: 1.5rem;
+    width: 1.5rem;
 }
 
 .frontImg,
 .backImg {
-  position: relative;
-  width: 100%;
-  height: auto;
-  backface-visibility: hidden;
-  transition: transform 0.15s;
+    position: relative;
+    width: 100%;
+    height: auto;
+    backface-visibility: hidden;
+    transition: transform 0.15s;
 }
 
 .frontImg {
-  transition-delay: 0.1s;
+    transition-delay: 0.1s;
 }
 
 .backImg {
-  position: absolute;
-  left: 0;
-  top: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .tile.matched {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .backImg {
-  transform: rotateY(0deg);
-  opacity: 1;
+    transform: rotateY(0deg);
+    opacity: 1;
 }
 
 .frontImg {
-  transform: rotateY(270deg);
+    transform: rotateY(270deg);
 }
 
 .tile.matched .backImg {
-  transform: rotateY(90deg);
+    transform: rotateY(90deg);
 }
 
 .tile.matched .frontImg {
-  transform: rotateY(0deg);
+    transform: rotateY(0deg);
 }
 
 .gameAreaCont {
-  margin-block-start: 1.5rem;
+    margin-block-start: 1.5rem;
 }
 
 .modalFooter {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 
 .results_tbody {
-  white-space: nowrap;
-  font-weight: bold;
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 .curtainWrapper {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: linear-gradient(to bottom, #c5deea 0%, #8abbd7 31%, #066dab 100%);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+        to bottom,
+        #c5deea 0%,
+        #8abbd7 31%,
+        #066dab 100%
+    );
 }
 
 /*NavBar*/
 
 .nav_item {
-  display: flex;
-  margin-bottom: 0;
+    display: flex;
+    margin-bottom: 0;
 }
 .nav_item li {
-  list-style: none;
-  padding: 0 0.5rem 0 0.5rem;
+    list-style: none;
+    padding: 0 0.5rem 0 0.5rem;
 }
 
 /*Login*/
 .login_wrapper {
-  display: flex;
-  flex-direction: column;
-  background-color: ghostwhite;
-  max-width: 400px;
-  margin: 0 auto;
-  border: double 5px #2378dc7d;
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-top: 10rem;
-  box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    background-color: ghostwhite;
+    max-width: 400px;
+    margin: 0 auto;
+    border: double 5px #2378dc7d;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 10rem;
+    box-shadow: 0px 0px 34px 0px rgba(0, 0, 0, 0.75);
 }
 
 .login_title {
-  align-self: center;
+    align-self: center;
 }
 
 .login_wrapper .login_btn {
-  margin-top: 2rem;
-  align-self: flex-end;
+    margin-top: 2rem;
+    align-self: flex-end;
 }
 
 .login_wrapper .login_error {
-  color: red;
-  height: 2rem;
-  margin-top: 1rem;
-  border-radius: 0.4rem;
-  text-align: center;
+    color: red;
+    height: 2rem;
+    margin-top: 1rem;
+    border-radius: 0.4rem;
+    text-align: center;
 }
 
 /*Preloader*/
 
 .preloader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 4rem);
 }
 
 /*result grid*/
 .result_container {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 table {
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 table tbody tr:nth-child(odd) {
-  background-color: wheat;
+    background-color: wheat;
 }
 
 table tbody tr:nth-child(even) {
-  background: whitesmoke;
+    background: whitesmoke;
 }
 
 table tbody tr td:nth-child(3) {
-  text-align: right;
+    text-align: right;
 }
 
 table tbody tr td:last-child {
-  padding-right: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .results_btn {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  justify-items: center;
-  margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin-top: 1rem;
 }
 
 /*win popup*/
 .container_winPopup {
-  display: grid;
-  position: fixed;
-  grid-template-rows: 1fr 2fr 1fr 1fr;
-  grid-template-columns: 1fr;
-  background: transparent;
-  justify-items: center;
-  align-items: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  width: 400px;
-  height: 300px;
-  border-radius: 2rem;
-  border: 0.1rem solid #000;
-  box-shadow: 0 0 0 0.2rem #c2c2ff, 0 0 0 0.3rem black,
-    0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
+    display: grid;
+    position: fixed;
+    grid-template-rows: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    background: transparent;
+    justify-items: center;
+    align-items: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 400px;
+    height: 300px;
+    border-radius: 2rem;
+    border: 0.1rem solid #000;
+    box-shadow: 0 0 0 0.2rem #c2c2ff, 0 0 0 0.3rem black,
+        0 0 1rem 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .container_winPopup h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: bold;
 }
 
 .container_winPopup .user_info {
-  text-align: center;
+    text-align: center;
 }
 
 .container_winPopup .btn_wrapper {
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
 }
 
 .open {
-  animation: animationWins linear 1s;
-  transform-origin: 50% 50%;
-  transform: translate(-50%, -50%) scale(1.2);
+    animation: animationWins linear 1s;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
 @keyframes animationWins {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) scaleX(1) scaleY(1);
-  }
-  10% {
-    transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
-  }
-  20% {
-    transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
-  }
-  30% {
-    transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
-  }
-  40% {
-    transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
-  }
-  50% {
-    transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
-  }
-  60% {
-    transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
-  }
-  70% {
-    transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
-  }
-  80% {
-    transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
-  }
-  90% {
-    transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(0deg) scaleX(1.2) scaleY(1.2);
-  }
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scaleX(1) scaleY(1);
+    }
+    10% {
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
+    }
+    20% {
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(0.8) scaleY(0.8);
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
+    }
+    40% {
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
+    }
+    60% {
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
+    }
+    70% {
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
+    }
+    80% {
+        transform: translate(-50%, -50%) rotate(-3deg) scaleX(1.2) scaleY(1.2);
+    }
+    90% {
+        transform: translate(-50%, -50%) rotate(3deg) scaleX(1.2) scaleY(1.2);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg) scaleX(1.2) scaleY(1.2);
+    }
 }
 
 @keyframes BGmoves {
-  0% {
-    background-position: 0% 0%;
-  }
+    0% {
+        background-position: 0% 0%;
+    }
 
-  50% {
-    background-position: -100% -100%;
-  }
+    50% {
+        background-position: -100% -100%;
+    }
 
-  100% {
-    background-position: 0% 0%;
-  }
+    100% {
+        background-position: 0% 0%;
+    }
 }
