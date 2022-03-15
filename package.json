@@ -10,10 +10,16 @@
         "prod": "webpack-dev-server --config ./webpack.config.js --mode production",
         "dev": "webpack-dev-server",
         "build": "webpack --mode production",
-        "prepare": "husky install"
+        "pre-commit": "lint-staged"
     },
+    "pre-commit": [
+        "pre-commit"
+    ],
     "lint-staged": {
-        "**/*": "prettier --write --ignore-unknown"
+        "*.js": [
+            "prettier --write",
+            "git add"
+        ]
     },
     "author": "",
     "license": "ISC",
@@ -41,7 +47,8 @@
         "husky": "^7.0.4",
         "jest": "^24.9.0",
         "lint-staged": "^12.3.5",
-        "prettier": "2.5.1",
+        "pre-commit": "^1.2.2",
+        "prettier": "^2.5.1",
         "react-hot-loader": "^4.12.10",
         "react-test-renderer": "^16.10.2",
         "sass": "^1.49.9",

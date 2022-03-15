@@ -11,14 +11,14 @@ describe('store hook test', () => {
     })
 
     it('save result to local storage', () => {
-        const user = {
-            name: 'David',
-            time: '00 : 01 : 0320',
-            level: {
-                difficult: 'EASY',
-                id: 1,
-            },
-        }
+                                        const user = {
+                                            name: 'David',
+                                            time: '00 : 01 : 0320',
+                                            level: {
+                                                difficult: 'EASY',
+                                                id: 1,
+                                            },
+                                        }
 
         result.current.setResult(user)
 
