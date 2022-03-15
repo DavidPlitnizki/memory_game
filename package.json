@@ -9,7 +9,11 @@
         "start": "webpack-dev-server --config ./webpack.config.js --mode development",
         "prod": "webpack-dev-server --config ./webpack.config.js --mode production",
         "dev": "webpack-dev-server",
-        "build": "webpack --mode production"
+        "build": "webpack --mode production",
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
     },
     "author": "",
     "license": "ISC",
@@ -34,7 +38,9 @@
         "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.14.0",
         "file-loader": "^4.2.0",
+        "husky": "^7.0.4",
         "jest": "^24.9.0",
+        "lint-staged": "^12.3.5",
         "prettier": "2.5.1",
         "react-hot-loader": "^4.12.10",
         "react-test-renderer": "^16.10.2",
