@@ -1,10 +1,11 @@
 import React from 'react'
-import NavBar from './components/NavBar'
-import { useAuth } from './hooks/auth.hook'
-import { AuthContext } from './context/AuthContext'
-import { useRoutes } from './routes'
+import { Col, Container, Row } from 'react-bootstrap'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap'
+
+import NavBar from './components/NavBar'
+import { AuthContext } from './context/AuthContext'
+import { useAuth } from './hooks/auth.hook'
+import { useRoutes } from './routes'
 import styles from './styles/styles.scss'
 
 const App = () => {

@@ -1,7 +1,9 @@
-import React, { useEffect, useState, lazy, Suspense } from 'react'
-const ResultUser = lazy(() => import('../components/Result/ResultUser'))
+import React, { Suspense, lazy, useEffect, useState } from 'react'
+
 import Preloader from '../components/Preloader'
 import { useStore } from '../hooks/store.hook'
+
+const ResultUser = lazy(() => import('../components/Result/ResultUser'))
 
 const ResultPage = () => {
     const { getResult, resetList } = useStore()

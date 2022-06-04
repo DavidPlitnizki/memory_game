@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import PropTypes from 'prop-types'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Container, Row } from 'react-bootstrap'
+
 import GameTile from '../components/GameTile.jsx'
 import { useCompare } from '../hooks/compare.hook'
-import { Container, Row } from 'react-bootstrap'
-import PropTypes from 'prop-types'
 import styles from '../styles/styles.scss'
 
 let canPlay = false

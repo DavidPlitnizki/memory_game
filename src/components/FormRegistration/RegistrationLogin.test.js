@@ -1,7 +1,8 @@
+import { fireEvent, render } from '@testing-library/react'
 import React, { createContext } from 'react'
-import RegistrationLogin from './RegistrationLogin'
-import { render, fireEvent } from '@testing-library/react'
+
 import { customRender } from '../../utils/TestUtils'
+import RegistrationLogin from './RegistrationLogin'
 
 describe('registration login component', () => {
     const mockCallback = jest.fn(() => console.log('mock was called'))

@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Dropdown } from 'react-bootstrap'
+
 import { AuthContext } from '../../context/AuthContext'
 
 const DropDown = ({ selectLevel }) => {

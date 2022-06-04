@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types'
+import React, { useCallback, useEffect, useState, memo } from 'react'
+
 import styles from '../styles/styles.scss'
 
-const Timer = ({ startGame, getTime }) => {
+const Timer = memo(({ startGame, getTime }) => {
     const [time, setTime] = useState(0)
 
     useEffect(() => {
@@ -50,7 +51,7 @@ const Timer = ({ startGame, getTime }) => {
             <span className={styles.timer_value}>{convertTime()}</span>
         </header>
     )
-}
+});
 
 Timer.propTypes = {
     getTime: PropTypes.func.isRequired,

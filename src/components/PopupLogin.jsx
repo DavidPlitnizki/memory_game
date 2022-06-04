@@ -1,26 +1,26 @@
-import React, { useState, useContext } from 'react'
-import { Modal, Button } from 'react-bootstrap'
-import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx'
-import DropDown from './FormRegistration/DropDown.jsx'
-import { useAuth } from '../hooks/auth.hook'
-import styles from '../styles/styles.scss'
-import { AuthContext } from '../context/AuthContext'
+import React, { useContext, useState, useCallback } from 'react'
+import { Button, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
-const PopupLogin = (props) => {
+import { AuthContext } from '../context/AuthContext'
+import styles from '../styles/styles.scss'
+import DropDown from './FormRegistration/DropDown.jsx'
+import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx'
+
+const PopupLogin = () => {
     const { login, isAuthenticated } = useContext(AuthContext)
     const handleClose = () => false
     const [name, setName] = useState('')
     const [level, setLevel] = useState(0)
     const history = useHistory()
 
-    const selectGameLevel = (level) => {
+    const selectGameLevel = useCallback((level) => {
         setLevel(level)
-    }
+    }, [level]);
 
-    const setPlayerName = (name) => {
+    const setPlayerName = useCallback((name) => {
         setName(name)
-    }
+    }, [name]);
 
     const handleInputs = () => {
         if (!name) {

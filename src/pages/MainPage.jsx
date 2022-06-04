@@ -1,11 +1,13 @@
-import React, { useState, useContext, useEffect, lazy, Suspense } from 'react'
-import GameArea from '../containers/GameArea'
-import Timer from '../components/Timer'
-const WinPopup = lazy(() => import('../components/WinPopup'))
+import React, { Suspense, lazy, useContext, useEffect, useState } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
+
 import Preloader from '../components/Preloader'
-import { useStore } from '../hooks/store.hook'
+import Timer from '../components/Timer'
+import GameArea from '../containers/GameArea'
 import { AuthContext } from '../context/AuthContext'
-import { Container, Row, Col } from 'react-bootstrap'
+import { useStore } from '../hooks/store.hook'
+
+const WinPopup = lazy(() => import('../components/WinPopup'))
 
 const initialTiles = [
     { tile_num: 1, selected: false },

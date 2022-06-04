@@ -1,6 +1,8 @@
-import React, { lazy, Suspense } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import React, { Suspense, lazy } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
+
 import Preloader from './components/Preloader'
+
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const MainPage = lazy(() => import('./pages/MainPage'))
 const ResultPage = lazy(() => import('./pages/ResultPage'))

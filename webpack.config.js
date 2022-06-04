@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const EslintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     entry: ['react-hot-loader/patch', './src/index.js'],
@@ -70,6 +71,13 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+        // new EslintPlugin({
+        //     failOnWarning: true,
+        //     outputReport: {
+        //         formatter: 'HTML',
+        //         filePath: '../typeCheckReport.html'
+        //     }
+        // })
     ],
     devServer: {
         contentBase: './dist',

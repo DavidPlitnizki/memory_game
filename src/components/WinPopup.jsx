@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import React, { useEffect, useState, memo } from 'react'
+import { useHistory } from 'react-router-dom'
+
 import styles from '../styles/styles.scss'
 
-const WinPopup = ({ name, level, time, showWinPopup }) => {
+const WinPopup = memo(({ name, level, time, showWinPopup }) => {
     const [cls, setCls] = useState('')
     let history = useHistory()
     useEffect(() => {
@@ -44,8 +45,7 @@ const WinPopup = ({ name, level, time, showWinPopup }) => {
             </section>
         </div>
     )
-}
-
+});
 WinPopup.propTypes = {
     name: PropTypes.string.isRequired,
     level: PropTypes.string.isRequired,

@@ -1,26 +1,26 @@
-import React, { useState, useContext } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import { Button } from 'react-bootstrap'
-import RegistrationLogin from '../components/FormRegistration/RegistrationLogin.jsx'
-import DropDown from '../components/FormRegistration/DropDown.jsx'
-import styles from '../styles/styles.scss'
-import { AuthContext } from '../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 
-const LoginPage = (props) => {
-    const { login, isAuthenticated } = useContext(AuthContext)
-    const handleClose = () => false
+import DropDown from '../components/FormRegistration/DropDown.jsx'
+import RegistrationLogin from '../components/FormRegistration/RegistrationLogin.jsx'
+import { AuthContext } from '../context/AuthContext'
+import styles from '../styles/styles.scss'
+
+const LoginPage = () => {
+    const { login } = useContext(AuthContext)
     const [name, setName] = useState('')
     const [error, setError] = useState('')
     const [level, setLevel] = useState(0)
     const history = useHistory()
 
-    const selectGameLevel = (level) => {
+    const selectGameLevel = useCallback((level) => {
         setLevel(level)
-    }
+    }, [level]);
 
-    const setPlayerName = (name) => {
+    const setPlayerName = useCallback((name) => {
         setName(name.trim())
-    }
+    }, [name]);
 
     const handleInputs = () => {
         if (!name) {

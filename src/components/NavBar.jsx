@@ -1,7 +1,9 @@
 import React from 'react'
-import { Container, Row, Col, Navbar } from 'react-bootstrap'
+import { Col, Container, Navbar, Row } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
+
 import styles from '../styles/styles.scss'
+
 const NavBar = () => {
     return (
         <Container fluid={true}>

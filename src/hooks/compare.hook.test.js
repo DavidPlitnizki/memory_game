@@ -1,5 +1,6 @@
+import { act, renderHook } from '@testing-library/react-hooks'
 import React from 'react'
-import { renderHook, act } from '@testing-library/react-hooks'
+
 import { useCompare } from '../hooks/compare.hook'
 
 describe('compare custom hook', () => {
