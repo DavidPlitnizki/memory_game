@@ -1,17 +1,16 @@
+import React from 'react';
 import PropTypes from 'prop-types'
-import React, {memo} from 'react'
-
-import styles from '../styles/styles.scss'
+import { memo } from 'react'
 
 const GameTile = memo(({ id, num, select, open }) => {
-    const matchedClass = open ? styles.matched : ''
+    const matchedClass = open ? 'matched' : ''
     return (
         <div
-            className={styles.tile + ' ' + `${matchedClass}`}
+            className={'tile ' + `${matchedClass}`}
             onClick={() => select({ id, value: num })}
         >
-            <img className={styles.frontImg} src={`../assets/${num}.png`} />
-            <img className={styles.backImg} src={`../assets/0.png`} />
+            <img className='frontImg' src={`../assets/${num}.png`} />
+            <img className='backImg' src={`../assets/0.png`} />
         </div>
     )
 });

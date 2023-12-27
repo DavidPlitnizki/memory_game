@@ -6,15 +6,15 @@ import NavBar from './components/NavBar'
 import { AuthContext } from './context/AuthContext'
 import { useAuth } from './hooks/auth.hook'
 import { useRoutes } from './routes'
-import styles from './styles/styles.scss'
 
 const App = () => {
     const { isAuth, login, playerName, playerLevel } = useAuth()
     const isAuthenticated = !!isAuth
     const routes = useRoutes(isAuthenticated)
 
+
     return (
-        <Container fluid={true} className={styles.wrapper}>
+        <Container fluid={true} className='wrapper'>
             <AuthContext.Provider
                 value={{
                     userLevel: playerLevel,

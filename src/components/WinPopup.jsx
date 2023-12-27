@@ -2,13 +2,11 @@ import PropTypes from 'prop-types'
 import React, { useEffect, useState, memo } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import styles from '../styles/styles.scss'
-
 const WinPopup = memo(({ name, level, time, showWinPopup }) => {
     const [cls, setCls] = useState('')
     let history = useHistory()
     useEffect(() => {
-        setCls(`${styles.open}`)
+        setCls('open')
     }, [])
 
     const handleRestart = () => {
@@ -20,14 +18,14 @@ const WinPopup = memo(({ name, level, time, showWinPopup }) => {
     }
 
     return (
-        <div className={styles.container_winPopup + ' ' + cls}>
+        <div className={'container_winPopup ' + cls}>
             <h2>Winner</h2>
-            <section className={styles.user_info}>
+            <section className='user_info'>
                 <h3>{name}</h3>
                 <h6>{`Level: ${level}`}</h6>
             </section>
             <h3>{time}</h3>
-            <section className={styles.btn_wrapper}>
+            <section className='btn_wrapper'>
                 <button
                     type="button"
                     className="btn btn-success"

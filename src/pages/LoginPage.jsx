@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import DropDown from '../components/FormRegistration/DropDown.jsx'
 import RegistrationLogin from '../components/FormRegistration/RegistrationLogin.jsx'
 import { AuthContext } from '../context/AuthContext'
-import styles from '../styles/styles.scss'
 
 const LoginPage = () => {
     const { login } = useContext(AuthContext)
@@ -41,8 +40,8 @@ const LoginPage = () => {
     }
 
     return (
-        <div className={styles.login_wrapper}>
-            <div className={styles.login_title}>
+        <div className='login_wrapper'>
+            <div className='login_title'>
                 <h2>NEW PLAYER</h2>
             </div>
             <section>
@@ -51,10 +50,10 @@ const LoginPage = () => {
             <section>
                 <DropDown selectLevel={selectGameLevel} />
             </section>
-            <section className={styles.login_error}>
+            <section className='login_error'>
                 <h4>{error}</h4>
             </section>
-            <div className={styles.login_btn}>
+            <div className='login_btn'>
                 <Button variant="primary" onClick={handleInputs}>
                     Start Game
                 </Button>

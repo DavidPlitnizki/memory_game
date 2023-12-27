@@ -3,7 +3,6 @@ import { Button, Modal } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 import { AuthContext } from '../context/AuthContext'
-import styles from '../styles/styles.scss'
 import DropDown from './FormRegistration/DropDown.jsx'
 import RegistrationLogin from './FormRegistration/RegistrationLogin.jsx'
 
@@ -49,7 +48,7 @@ const PopupLogin = () => {
                 <RegistrationLogin saveNameCB={setPlayerName} />
                 <DropDown selectLevel={selectGameLevel} />
             </Modal.Body>
-            <Modal.Footer className={styles.modalFooter}>
+            <Modal.Footer className='modalFooter'>
                 <Button variant="primary" onClick={handleInputs}>
                     Start Game
                 </Button>
