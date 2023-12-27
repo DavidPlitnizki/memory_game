@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useCallback, useEffect, useState, memo } from 'react'
 
-import styles from '../styles/styles.scss'
-
 const Timer = memo(({ startGame, getTime }) => {
     const [time, setTime] = useState(0)
 
@@ -47,8 +45,8 @@ const Timer = memo(({ startGame, getTime }) => {
     }
 
     return (
-        <header className={styles.timer_wrapper}>
-            <span className={styles.timer_value}>{convertTime()}</span>
+        <header className='timer_wrapper'>
+            <span className='timer_value'>{convertTime()}</span>
         </header>
     )
 });

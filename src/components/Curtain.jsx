@@ -1,7 +1,5 @@
 import React from 'react'
 
-import styles from '../styles/styles.scss'
-
-const Curtain = () => ( <div className={styles.curtainWrapper} />)
+const Curtain = () => ( <div className='curtainWrapper' />)
 
 export default Curtain;
