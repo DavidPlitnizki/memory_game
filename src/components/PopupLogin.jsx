@@ -48,7 +48,7 @@ const PopupLogin = () => {
                 <RegistrationLogin saveNameCB={setPlayerName} />
                 <DropDown selectLevel={selectGameLevel} />
             </Modal.Body>
-            <Modal.Footer className='modalFooter'>
+            <Modal.Footer className='modal_footer'>
                 <Button variant="primary" onClick={handleInputs}>
                     Start Game
                 </Button>
