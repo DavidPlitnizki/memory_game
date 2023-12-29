@@ -81,7 +81,7 @@ const GameArea = ({ getSettings, getWinner }) => {
     }, [superiorTiles, gameFields])
 
     return (
-        <Container className='gameAreaCont'>
+        <Container className='gamearea_count'>
             <Row className="mb-2">
                 {gameFields.map((tile, i) => (
                     <GameTile

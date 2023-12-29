@@ -4,13 +4,18 @@ import { memo } from 'react'
 
 const GameTile = memo(({ id, num, select, open }) => {
     const matchedClass = open ? 'matched' : ''
+
+    function getImageUrl(name) {
+        return new URL(`../assets/${name}.png`, import.meta.url).href
+      }
+
     return (
         <div
             className={'tile ' + `${matchedClass}`}
             onClick={() => select({ id, value: num })}
         >
-            <img className='frontImg' src={`../assets/${num}.png`} />
-            <img className='backImg' src={`../assets/0.png`} />
+            <img className='front_img' src={getImageUrl(num)} />
+            <img className='back_img' src={getImageUrl(0)} />
         </div>
     )
 });
