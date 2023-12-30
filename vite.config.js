@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     // Relative to the root
     outDir: '../dist',
-    ollupOptions: {
+    rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
           let extType = assetInfo.name.split('.').at(1);
