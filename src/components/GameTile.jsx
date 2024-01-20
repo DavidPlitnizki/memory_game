@@ -12,8 +12,7 @@ const GameTile = memo(({ id, num, select, open }) => {
     return (
         <div
             className={'tile ' + `${matchedClass}`}
-            onClick={() => select({ id, value: num })}
-        >
+            onClick={() => select({ id, value: num })}>
             <img className='front_img' src={getImageUrl(num)} />
             <img className='back_img' src={getImageUrl(0)} />
         </div>
