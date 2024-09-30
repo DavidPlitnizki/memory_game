@@ -1,6 +1,6 @@
 import React, { useContext, useState, useCallback } from 'react'
 import { Button, Modal } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { AuthContext } from '../context/AuthContext'
 import DropDown from './FormRegistration/DropDown.jsx'
@@ -11,7 +11,7 @@ const PopupLogin = () => {
     const handleClose = () => false
     const [name, setName] = useState('')
     const [level, setLevel] = useState(0)
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const selectGameLevel = useCallback((level) => {
         setLevel(level)
@@ -28,7 +28,7 @@ const PopupLogin = () => {
             alert('missing difficult')
         }
 
-        history.push('/main')
+        navigate('/main')
         const userData = { userName: name, level }
         login(userData)
     }
