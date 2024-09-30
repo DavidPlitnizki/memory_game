@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import React, { useEffect, useState, memo } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const WinPopup = memo(({ name, level, time, showWinPopup }) => {
     const [cls, setCls] = useState('')
-    let history = useHistory()
+    let navigate = useNavigate()
     useEffect(() => {
         setCls('open')
     }, [])
@@ -14,7 +14,7 @@ const WinPopup = memo(({ name, level, time, showWinPopup }) => {
     }
 
     const handleResult = () => {
-        history.push('/result')
+        navigate('/result')
     }
 
     return (

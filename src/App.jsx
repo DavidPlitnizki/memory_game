@@ -1,16 +1,39 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { Container } from 'react-bootstrap'
+import {
+    createBrowserRouter,
+  } from "react-router-dom";
+  import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar'
 import { AuthContext } from './context/AuthContext'
 import { useAuth } from './hooks/auth.hook'
-import { useRoutes } from './routes'
+import Preloader from './components/Preloader'
+import LoginPage from './pages/LoginPage';
+import MainPage from './pages/MainPage';
+import ResultPage from './pages/ResultPage';
+
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <LoginPage />,
+      loader: <Preloader />
+    },
+    {
+        path: "/main",
+        element: <MainPage />,
+        loader: <Preloader />
+      },
+      {
+        path: "/result",
+        element: <ResultPage />,
+        loader: <Preloader />
+      },
+  ]);
 
 const App = () => {
     const { isAuth, login, playerName, playerLevel } = useAuth()
     const isAuthenticated = !!isAuth
-    const routes = useRoutes(isAuthenticated)
 
 
     return (
@@ -23,14 +46,14 @@ const App = () => {
                     isAuthenticated,
                 }}
             >
-                <Router>
-                    <Row>
-                        <Col>{isAuth && <NavBar />}</Col>
-                    </Row>
-                    <Row>
-                        <Col>{routes}</Col>
-                    </Row>
-                </Router>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route path="/main" element={<MainPage />} />
+                        <Route path="/result" element={<ResultPage />} />
+                        
+                    </Routes>
+                </BrowserRouter>
             </AuthContext.Provider>
         </Container>
     )

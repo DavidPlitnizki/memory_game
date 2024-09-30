@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
 import Preloader from '../components/Preloader'
@@ -6,8 +6,7 @@ import Timer from '../components/Timer'
 import GameArea from '../containers/GameArea'
 import { AuthContext } from '../context/AuthContext'
 import { useStore } from '../hooks/store.hook'
-
-const WinPopup = lazy(() => import('../components/WinPopup'))
+import WinPopup from '../components/WinPopup'
 
 const initialTiles = [
     { tile_num: 1, selected: false },
@@ -149,14 +148,13 @@ const MainPage = () => {
     return (
         <React.Fragment>
             {winPopup ? (
-                <Suspense fallback={<Preloader />}>
+               
                     <WinPopup
                         name={userName}
                         level={userLevel.difficult}
                         time={playTime}
                         showWinPopup={showWinPopup}
-                    />{' '}
-                </Suspense>
+                    />
             ) : (
                 <Container>
                     <Row>
