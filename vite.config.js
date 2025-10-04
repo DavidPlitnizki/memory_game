@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import simpleHtmlPlugin from 'vite-plugin-simple-html';
+import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
   root: 'src',
@@ -23,7 +23,7 @@ export default defineConfig({
   },
   publicDir: './src/assets',
   plugins: [
-    simpleHtmlPlugin({
+    createHtmlPlugin({
       inject: {
         data: {
           title: import.meta.env === 'production' ? 'My site' : `My site Develop`,
